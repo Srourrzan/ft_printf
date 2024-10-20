@@ -3,5 +3,6 @@
 
 int main(void)
 {
-    ft_printf("hi there\n%s", "hi there");
+    char    *str = "Razan Srour";
+    ft_printf("hi there %p \n", str);
 }

@@ -34,6 +34,12 @@ int ft_printf(char *fmt, ...)
                 }
                 
             }
+            else if (fmt[i] == 'p')
+            {
+                unsigned long ptr_add = va_arg(args, unsigned long);
+                printf("ptr_add %ld\n", ptr_add);
+            }
+            
         }
         else
         {
