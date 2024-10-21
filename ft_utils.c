@@ -1,17 +1,18 @@
 #include "header/ft_printf.h"
 #include "header/libft.h"
 
-int ft_convert_decimel_to_hexa(int number) {
-    char hex[9];
-    int i = 0;
+int ft_convert_decimel_to_hexa(unsigned long number) {
+    char hex[100];
+    int i;
+    int remainder;
 
+    i = 0;
     if (number == 0) {
-        write(1, "0", 1);
+        ft_putchar_fd('0', 1);
         return 1;
     }
-
     while (number > 0) {
-        int remainder = number % 16;
+        remainder = number % 16;
         if (remainder < 10) {
             hex[i] = remainder + '0';
         } else {
@@ -20,18 +21,19 @@ int ft_convert_decimel_to_hexa(int number) {
         number /= 16;
         i++;
     }
-
+    hex[i] = '\0';
+    i--;
     while (i > 0) {
-        write(1, &hex[--i], 1);
+        ft_putchar_fd(hex[--i], 1);
     }
-
+    ft_putchar_fd('\n', 1);
     return i;
 }
 
-int main()
-{
-    int     n = 32515;
-    ft_convert_decimel_to_hexa(n);
-    printf("\n%x", n);
-    return 0;
-}
+// int main()
+// {
+//     int     n = 32515;
+//     ft_convert_decimel_to_hexa(n);
+//     printf("\n%x", n);
+//     return 0;
+// }

@@ -3,5 +3,8 @@
 #include <limits.h>
 #include <stdio.h>
 #include <stdarg.h>
+
 int ft_printf(char *fmt, ...);
+int ft_convert_decimel_to_hexa(unsigned long number);
+
 #endif

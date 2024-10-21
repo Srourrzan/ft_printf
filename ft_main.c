@@ -36,8 +36,14 @@ int ft_printf(char *fmt, ...)
             }
             else if (fmt[i] == 'p')
             {
+                printf("This is a pointer\n");
                 unsigned long ptr_add = va_arg(args, unsigned long);
-                printf("ptr_add %ld\n", ptr_add);
+                printf("Converting the pointer to hexadecimel\n");
+                ft_putchar_fd('0', 1);
+                ft_putchar_fd('x', 1);
+                ft_convert_decimel_to_hexa(ptr_add);
+                printf("Conversion ended\n");
+                //printf("ptr_add %ld\n", ptr_add);
             }
             
         }
