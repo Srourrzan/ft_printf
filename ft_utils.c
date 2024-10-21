@@ -1,13 +1,14 @@
 #include "header/ft_printf.h"
 #include "header/libft.h"
 
-int ft_convert_decimel_to_hexa(unsigned long number) {
+int ft_convert_decimel_to_hexa_p(unsigned long number) {
     char hex[100];
     int i;
     int remainder;
 
     i = 0;
     if (number == 0) {
+        printf("number os 0");
         ft_putchar_fd('0', 1);
         return 1;
     }
@@ -26,7 +27,37 @@ int ft_convert_decimel_to_hexa(unsigned long number) {
     while (i > 0) {
         ft_putchar_fd(hex[--i], 1);
     }
-    ft_putchar_fd('\n', 1);
+    //ft_putchar_fd('\n', 1);
+    return i;
+}
+
+int ft_convert_decimel_to_hexa_ux(unsigned int number, char type) {
+    char hex[100];
+    int i;
+    int remainder;
+
+    i = 0;
+    if (number == 0) {
+        ft_putchar_fd('0', 1);
+        return 1;
+    }
+    while (number > 0) {
+        remainder = number % 16;
+        if (remainder < 10) {
+            hex[i] = remainder + '0';
+        } else {
+            if (type == 'x')
+                hex[i] = remainder - 10 + 'a'; 
+            else if (type == 'X')
+                hex[i] = remainder - 10 + 'A';
+        }
+        number /= 16;
+        i++;
+    }
+    hex[i] = '\0';   
+    while (i > 0) {
+        ft_putchar_fd(hex[--i], 1);
+    }
     return i;
 }
 

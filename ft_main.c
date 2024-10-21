@@ -32,20 +32,19 @@ int ft_printf(char *fmt, ...)
                 {
                     ft_putchar_fd(*str++, 1);
                 }
-                
             }
             else if (fmt[i] == 'p')
             {
-                printf("This is a pointer\n");
                 unsigned long ptr_add = va_arg(args, unsigned long);
-                printf("Converting the pointer to hexadecimel\n");
                 ft_putchar_fd('0', 1);
                 ft_putchar_fd('x', 1);
-                ft_convert_decimel_to_hexa(ptr_add);
-                printf("Conversion ended\n");
-                //printf("ptr_add %ld\n", ptr_add);
+                ft_convert_decimel_to_hexa_p(ptr_add);
             }
-            
+            else if (fmt[i] == 'x' || fmt[i] == 'X')
+            {
+                unsigned int x_value = va_arg(args, unsigned int);
+                ft_convert_decimel_to_hexa_ux(x_value, fmt[i]);
+            }
         }
         else
         {
@@ -53,5 +52,5 @@ int ft_printf(char *fmt, ...)
         }
         i++;
     }
-    return (1);
+    return (i);
 }
