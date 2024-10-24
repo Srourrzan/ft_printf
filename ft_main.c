@@ -43,7 +43,12 @@ int ft_printf(char *fmt, ...)
             else if (fmt[i] == 'x' || fmt[i] == 'X')
             {
                 unsigned int x_value = va_arg(args, unsigned int);
-                ft_convert_decimel_to_hexa_ux(x_value, fmt[i]);
+                ft_convert_decimel_to_hexa_x(x_value, fmt[i]);
+            }
+            else if (fmt[i] == 'u')
+            {
+                unsigned int u_value = va_arg(args, unsigned int);
+                ft_convert_signed_to_unsigned(u_value);
             }
         }
         else

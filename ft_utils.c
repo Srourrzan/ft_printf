@@ -31,7 +31,7 @@ int ft_convert_decimel_to_hexa_p(unsigned long number) {
     return i;
 }
 
-int ft_convert_decimel_to_hexa_ux(unsigned int number, char type) {
+int ft_convert_decimel_to_hexa_x(unsigned int number, char type) {
     char hex[100];
     int i;
     int remainder;
@@ -59,6 +59,36 @@ int ft_convert_decimel_to_hexa_ux(unsigned int number, char type) {
         ft_putchar_fd(hex[--i], 1);
     }
     return i;
+}
+
+int ft_convert_signed_to_unsigned(unsigned int number)
+{
+    char    n_base;
+    int         len;
+    size_t      aux;
+    int         str_len;
+
+    len = 0;
+    aux = n;
+    if (number == 0)
+        len = 1;
+    while (aux != 0)
+    {
+        aux /= 10;
+        len++;
+    }
+    n_base = malloc(sizeof(char) * (len+1));
+    if (!n_base)
+        return (NULL);
+    n_base[len] = '\0';
+    while (len--)
+    {
+        n_base[len] = base[number % 10];
+        n /= 10;
+    }
+    str_len = write(1, n_base, ft_strlen(str)*sizeof(char));
+    free(n_base);
+    return (str_len);
 }
 
 // int main()
