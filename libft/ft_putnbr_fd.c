@@ -6,14 +6,13 @@
 /*   By: rsrour <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:04:28 by rsrour            #+#    #+#             */
-/*   Updated: 2024/09/05 18:08:09 by rsrour           ###   ########.fr       */
+/*   Updated: 2024/10/26 20:28:28 by rsrour           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/libft.h"
 
-
-void	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr_fd(int n, int fd, int len)
 {
 	int	sign;
 
@@ -21,6 +20,7 @@ void	ft_putnbr_fd(int n, int fd)
 	if (n < 0)
 	{
 		ft_putchar_fd('-', fd);
+		len += 1;
 		if (n == -2147483648)
 		{
 			sign = 1;
@@ -30,17 +30,19 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	if (n > 9)
 	{
-		ft_putnbr_fd(n / 10, fd);
+		len += 1;
+		len = ft_putnbr_fd(n / 10, fd, len);
 	}
 	ft_putchar_fd(n % 10 + '0' + sign, fd);
+	return (len);
 }
-/*
-int	main(void)
-{
-	int	n;
 
-	n = -576;
-	ft_putnbr_fd(n, 1);
-	return (0);
-}
-*/
+// int    main(void)
+// {
+//     int    n;
+
+//     n = 5767545;
+//     int len_number = ft_putnbr_fd(n, 1, 0);
+//     printf("\nlength of %d = %d\n", n, len_number);
+//     return (0);
+// }
