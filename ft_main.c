@@ -4,8 +4,11 @@
 int ft_printf(char *fmt, ...)
 {
     int i = 0;
+    int num_char;
     va_list args;
     va_start(args, fmt);
+
+    num_char = 0;
     while(fmt[i])
     {
         if(fmt[i] == '%')
@@ -38,17 +41,18 @@ int ft_printf(char *fmt, ...)
                 unsigned long ptr_add = va_arg(args, unsigned long);
                 ft_putchar_fd('0', 1);
                 ft_putchar_fd('x', 1);
-                ft_convert_decimel_to_hexa_p(ptr_add);
+                num_char += ft_convert_decimel_to_hexa_p(ptr_add);
+                num_char += 2;
             }
             else if (fmt[i] == 'x' || fmt[i] == 'X')
             {
                 unsigned int x_value = va_arg(args, unsigned int);
-                ft_convert_decimel_to_hexa_x(x_value, fmt[i]);
+                num_char += ft_convert_decimel_to_hexa_x(x_value, fmt[i]);
             }
             else if (fmt[i] == 'u')
             {
                 unsigned int u_value = va_arg(args, unsigned int);
-                ft_convert_signed_to_unsigned(u_value);
+                num_char += ft_convert_signed_to_unsigned(u_value);
             }
         }
         else
@@ -56,6 +60,7 @@ int ft_printf(char *fmt, ...)
             ft_putchar_fd(fmt[i], 1);
         }
         i++;
+        va_end(args);
     }
-    return (i);
+    return (i + num_char);
 }

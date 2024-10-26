@@ -63,13 +63,13 @@ int ft_convert_decimel_to_hexa_x(unsigned int number, char type) {
 
 int ft_convert_signed_to_unsigned(unsigned int number)
 {
-    char    n_base;
+    char    *n_base;
     int         len;
     size_t      aux;
     int         str_len;
 
     len = 0;
-    aux = n;
+    aux = number;
     if (number == 0)
         len = 1;
     while (aux != 0)
@@ -83,10 +83,10 @@ int ft_convert_signed_to_unsigned(unsigned int number)
     n_base[len] = '\0';
     while (len--)
     {
-        n_base[len] = base[number % 10];
-        n /= 10;
+        n_base[len] = number % 10 + '0';
+        number /= 10;
     }
-    str_len = write(1, n_base, ft_strlen(str)*sizeof(char));
+    str_len = write(1, n_base, ft_strlen(n_base)*sizeof(char));
     free(n_base);
     return (str_len);
 }
