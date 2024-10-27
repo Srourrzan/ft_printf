@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsrour <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gitpod <gitpod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 20:23:30 by rsrour            #+#    #+#             */
-/*   Updated: 2024/10/26 20:23:32 by rsrour           ###   ########.fr       */
+/*   Updated: 2024/10/27 18:59:01 by gitpod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 int ft_convert_decimel_to_hexa_p(unsigned long number)
 {
-    char hex[100];
-    int i;
-    int remainder;
-    int len;
+    char    hex[100];
+    int         i;
+    int         remainder;
+    int         len;
 
     i = 0;
     if (number == 0)
@@ -126,11 +126,3 @@ int ft_convert_signed_to_unsigned(unsigned int number)
     free(n_base);
     return (str_len);
 }
-
-// int main()
-// {
-//     int     n = 32515;
-//     ft_convert_decimel_to_hexa(n);
-//     printf("\n%x", n);
-//     return (0);
-// }

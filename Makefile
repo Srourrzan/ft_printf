@@ -1,4 +1,4 @@
-SRCS = ft_main.c ft_utils.c
+SRCS = ft_main.c ft_utils.c ft_support_print.c
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
