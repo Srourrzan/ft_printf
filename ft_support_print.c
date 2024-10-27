@@ -6,7 +6,7 @@
 /*   By: gitpod <gitpod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 18:39:29 by gitpod            #+#    #+#             */
-/*   Updated: 2024/10/27 18:51:58 by gitpod           ###   ########.fr       */
+/*   Updated: 2024/10/27 19:05:50 by gitpod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	print_ptr(unsigned long ptr_add, int num_char)
 		ft_putchar_fd('x', 1);
 		num_char += ft_convert_decimel_to_hexa_p(ptr_add);
 		num_char += 2;
-		num_char -= 1;
+        num_char -= 1;
 	}
 	return (num_char);
 }
