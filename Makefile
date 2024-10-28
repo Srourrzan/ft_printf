@@ -19,8 +19,6 @@ LIBFT_OBJS = $(libftdir)/ft_isalnum.o $(libftdir)/ft_isprint.o $(libftdir)/ft_me
         $(libftdir)/ft_lstdelone.o $(libftdir)/ft_lstlast.o $(libftdir)/ft_lstnew.o \
         $(libftdir)/ft_lstsize.o $(libftdir)/ft_lstiter.o $(libftdir)/ft_lstmap.o
 
-# LIBFT_OBJS = $(shell find $(libftdir) -name '*.o')
-
 all: $(NAME)
 
 libft:
