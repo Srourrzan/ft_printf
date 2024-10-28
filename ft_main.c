@@ -26,8 +26,7 @@ int	print_types(va_list args, char spec, int num_char)
 	else if (spec == 'p')
 		num_char = print_ptr(va_arg(args, unsigned long), num_char);
 	else if (spec == 'x' || spec == 'X')
-		num_char = print_hexa(va_arg(args, unsigned int),
-				num_char, spec);
+		num_char = print_hexa(va_arg(args, unsigned int), num_char, spec);
 	else if (spec == 'u')
 		num_char = print_unsigned(va_arg(args, unsigned int), num_char);
 	return (num_char);
@@ -35,9 +34,9 @@ int	print_types(va_list args, char spec, int num_char)
 
 int	ft_printf(const char *fmt, ...)
 {
-	int				i;
-	int				num_char;
-	va_list			args;
+	int		i;
+	int		num_char;
+	va_list	args;
 
 	i = 0;
 	va_start(args, fmt);

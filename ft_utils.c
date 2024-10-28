@@ -3,42 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitpod <gitpod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rsrour <rsrour@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 20:23:30 by rsrour            #+#    #+#             */
-/*   Updated: 2024/10/27 19:13:07 by gitpod           ###   ########.fr       */
+/*   Updated: 2024/10/28 19:46:10 by rsrour           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/ft_printf.h"
 #include "header/libft.h"
 
-int	ft_convert_decimel_to_hexa_p(unsigned long number)
+char	*ft_hexa_converter(unsigned long number, char *hex_str)
 {
-	char	hex[100];
-	int		i;
-	int		remainder;
-	int		len;
+	int	remainder;
+	int	i;
 
 	i = 0;
+	while (number > 0)
+	{
+		remainder = number % 16;
+		if (remainder < 10)
+			hex_str[i] = remainder + '0';
+		else
+			hex_str[i] = remainder - 10 + 'a';
+		number /= 16;
+		i++;
+	}
+	hex_str[i] = '\0';
+	return (hex_str);
+}
+
+int	ft_convert_decimel_to_hexa_p(unsigned long number)
+{
+	char	hex[16];
+	int		len;
+	int		i;
+
 	if (number == 0)
 	{
 		ft_putchar_fd('0', 1);
 		return (1);
 	}
-	while (number > 0)
-	{
-		remainder = number % 16;
-		if (remainder < 10)
-			hex[i] = remainder + '0';
-		else
-			hex[i] = remainder - 10 + 'a';
-		number /= 16;
-		i++;
-	}
-	len = i;
-	hex[++i] = '\0';
-	i--;
+	if (number > 0)
+		ft_hexa_converter(number, hex);
+	len = ft_strlen(hex);
+	i = len;
 	while (i > 0)
 		ft_putchar_fd(hex[--i], 1);
 	return (len);
@@ -46,7 +55,7 @@ int	ft_convert_decimel_to_hexa_p(unsigned long number)
 
 void	ft_reverse_string(char *str)
 {
-	char	*temp;
+	char	temp;
 	int		len;
 	int		i;
 
@@ -54,7 +63,7 @@ void	ft_reverse_string(char *str)
 	i = 0;
 	while (str[len] != '\0')
 		len++;
-	while(i < len / 2)
+	while (i < len / 2)
 	{
 		temp = str[i];
 		str[i] = str[len - 1 - i];
@@ -63,11 +72,23 @@ void	ft_reverse_string(char *str)
 	}
 }
 
-int	ft_convert_decimel_to_hexa_x(unsigned int number, char type)
+char	*str_toupper(char *data)
 {
-	char	hex[100];
-	int		i;
-	int		remainder;
+	int	i;
+
+	i = 0;
+	while (data[i])
+	{
+		data[i] = ft_toupper(data[i]);
+		i++;
+	}
+	return (data);
+}
+
+int	ft_convert_decimel_to_hexa_x(unsigned int number, char *str)
+{
+	int	i;
+	int	remainder;
 
 	i = 0;
 	if (number == 0)
@@ -79,48 +100,12 @@ int	ft_convert_decimel_to_hexa_x(unsigned int number, char type)
 	{
 		remainder = number % 16;
 		if (remainder < 10)
-			hex[i++] = remainder + '0';
+			str[i++] = remainder + '0';
 		else
-		{
-			if (type == 'x')
-				hex[i++] = remainder - 10 + 'a';
-			else if (type == 'X')
-				hex[i++] = remainder - 10 + 'A';
-		}
+			str[i++] = remainder - 10 + 'a';
 		number /= 16;
 	}
-	hex[i] = '\0';
-	ft_reverse_string(hex);
-	ft_putstr_fd(hex, 1);
+	str[i] = '\0';
+	ft_reverse_string(str);
 	return (i);
-}
-
-int	ft_convert_signed_to_unsigned(unsigned int number)
-{
-	char	*n_base;
-	int		len;
-	size_t	aux;
-	int		str_len;
-
-	len = 0;
-	aux = number;
-	if (number == 0)
-		len = 1;
-	while (aux != 0)
-	{
-		aux /= 10;
-		len++;
-	}
-	n_base = malloc(sizeof(char) * (len + 1));
-	if (!n_base)
-		return (0);
-	n_base[len] = '\0';
-	while (len--)
-	{
-		n_base[len] = number % 10 + '0';
-		number /= 10;
-	}
-	str_len = write(1, n_base, ft_strlen(n_base) * sizeof(char));
-	free(n_base);
-	return (str_len);
 }

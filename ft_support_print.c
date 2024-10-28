@@ -51,14 +51,30 @@ int	print_ptr(unsigned long ptr_add, int num_char)
 		ft_putchar_fd('x', 1);
 		num_char += ft_convert_decimel_to_hexa_p(ptr_add);
 		num_char += 2;
-        num_char -= 1;
+		num_char -= 1;
 	}
 	return (num_char);
 }
 
 int	print_hexa(unsigned int x_value, int num_char, char type)
 {
-	num_char += ft_convert_decimel_to_hexa_x(x_value, type);
+	char	*str;
+
+	str = (char *)malloc(sizeof(char) * 12);
+	if (str == NULL)
+		return (0);
+	ft_bzero(str, 12);
+	if (type == 'X')
+	{
+		num_char += ft_convert_decimel_to_hexa_x(x_value, str);
+		ft_putstr_fd(str_toupper(str), 1);
+	}
+	else
+	{
+		num_char += ft_convert_decimel_to_hexa_x(x_value, str);
+		ft_putstr_fd(str, 1);
+	}
+	free(str);
 	return (num_char - 1);
 }
 
